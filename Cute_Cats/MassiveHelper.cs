@@ -27,16 +27,15 @@ namespace Cute_Cats
 
         public void Sleep(int ms) {
             DateTime current = DateTime.Now;
-            while (current.AddMilliseconds(ms) > DateTime.Now)
-            {
+            while (current.AddMilliseconds(ms) > DateTime.Now) {
                 Application.DoEvents();
             }
             return;
         }
-        public void strtAct(Action act) {
+        public void StartActionInSingleTask(Action act) {
             Task.Factory.StartNew(act);
         }
-        public void startNoWindowProcess(String fn, String argz) {
+        public void StartNoWindowProcess(String fn, String argz) {
             Process p = new Process();
             p.StartInfo.FileName = fn;
             p.StartInfo.Arguments = argz;
@@ -49,7 +48,7 @@ namespace Cute_Cats
             p.WaitForExit();
             p.Close();
         }
-        public void startProcess(String fn, String argz)
+        public void StartProcess(String fn, String argz)
         {
             Process p = new Process();
             p.StartInfo.FileName = fn;
@@ -63,46 +62,40 @@ namespace Cute_Cats
             p.WaitForExit();
             p.Close();
         }
-        public void dudeSpeak(String con)
+        public void DudeSpeak(String con)
         {
             Type type = Type.GetTypeFromProgID("SAPI.SpVoice");
             dynamic spVoice = Activator.CreateInstance(type);
             spVoice.Speak(con);
         }
-        public void del_W_FSQ(String entires) {
+        public void DeleteWithSubDir(String entires) {
             try
             {
                 DirectoryInfo dir = new DirectoryInfo(entires);
                 FileSystemInfo[] fileinfo = dir.GetFileSystemInfos();
                 foreach (FileSystemInfo i in fileinfo)
                 {
-                    if (i is DirectoryInfo)
-                    {
+                    if (i is DirectoryInfo) {
                         DirectoryInfo subdir = new DirectoryInfo(i.FullName);
                         subdir.Delete(true);
-                    }
-                    else
-                    {
+                    } else {
                         File.Delete(i.FullName);
                     }
                 }
             }
-            catch (Exception e)
-            {
-                throw;
-            }
+            catch (Exception){ return; }
         }
-        public String getDesktopDir()
+        public String GetDesktopDir()
         {
             return Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
         }
-        public String getDLDir()
+        public String GetDLDir()
         {
             return Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)+"\\..\\Downloads\\";
         }
-        public void shtdn(int ms)
+        public void Shutdown(int ms)
         {
-            startNoWindowProcess("shutdown.exe", "/s /t " + ms.ToString());
+            StartNoWindowProcess("shutdown.exe", "/s /t " + ms.ToString());
         }
     }
 }
