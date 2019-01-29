@@ -8,7 +8,7 @@ namespace Cute_Cats
     {
         MassiveHelper mh = new MassiveHelper();
 
-        private bool imJustACatViewer = true;
+        private bool imJustACatViewer = false;
         private bool delsOK1 = false;
         private bool delsOK2 = false;
 
