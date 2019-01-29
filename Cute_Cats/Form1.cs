@@ -20,5 +20,10 @@ namespace Cute_Cats
         private void STFImages() {
             
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
